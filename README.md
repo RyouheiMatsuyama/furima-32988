@@ -21,12 +21,12 @@
 | ----------------------- | --------- | ----------------- |
 | name                    | text      | null: false       |
 | explanation             | text      | null: false       |
-| details_categoly        | integer   | null: false       |
+| details_category_id     | integer   | null: false       |
 | details_state_id        | integer   | null: false       |
 | shipping_fee_burden_id  | integer   | null: false       |
 | prefecture_id           | integer   | null: false       |
 | days_to_ship_id         | integer   | null: false       |
-| selling_price           | string    | null: false       |
+| selling_price_id        | integer   | null: false       |
 | user                    | reference | foreign_key: true |
 
 ### Association
@@ -42,14 +42,10 @@
 | address       | string     | null: false       |
 | building      | string     |                   |
 | phone_number  | string     | null: false       |
-| listings      | reference  | foreign_key: true |
-| user          | reference  | foreign_key: true |
 | purchase      | reference  | foreign_key: true |
 
 ### Association
--has_one :user
--has_one :listing
--has_one :purchase
+-belongs_to :purchase
 
 ## purchases テーブル
 | Column        | Type       | Options           |
@@ -58,4 +54,6 @@
 | user          | reference  | foreign_key: true |
 
 ### Association
--has_one  :prefecture
+-belongs_to :user
+-belongs_to :listing
+-has_one    :prefecture
