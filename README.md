@@ -1,24 +1,59 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
+| Column                | Type   | Options                  |
+| --------------------- | ------ | ------------------------ |
+| nick_name             | string | null: false              |
+| email                 | string | unique: true null: false |
+| encrypted_password    | string | null: false              |
+| last_name             | string | null: false              |
+| first_name            | string | null: false              |
+| first_name_kana       | string | null: false              |
+| last_name_kana        | string | null: false              |
+| birth_date            | date   | null: false              |
 
-Things you may want to cover:
+### Association
+-has_many :listings
+-has_many :purchases
 
-* Ruby version
+## listings テーブル
+| Column                  | Type      | Options           |
+| ----------------------- | --------- | ----------------- |
+| name                    | string    | null: false       |
+| explanation             | text      | null: false       |
+| details_category_id     | integer   | null: false       |
+| details_state_id        | integer   | null: false       |
+| shipping_fee_burden_id  | integer   | null: false       |
+| prefecture_id           | integer   | null: false       |
+| days_to_ship_id         | integer   | null: false       |
+| selling_price           | integer   | null: false       |
+| user                    | reference | foreign_key: true |
 
-* System dependencies
+### Association
+-belongs_to :user
+-has_one  :purchase
 
-* Configuration
+## prefecturesテーブル
+| Column        | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| postal_code   | string     | null: false       |
+| prefecture_id | integer    | null: false       |
+| municipality  | string     | null: false       |
+| address       | string     | null: false       |
+| building      | string     |                   |
+| phone_number  | string     | null: false       |
+| purchase      | reference  | foreign_key: true |
 
-* Database creation
+### Association
+-belongs_to :purchase
 
-* Database initialization
+## purchases テーブル
+| Column        | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| listing       | reference  | foreign_key: true |
+| user          | reference  | foreign_key: true |
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+-belongs_to :user
+-belongs_to :listing
+-has_one    :prefecture
