@@ -14,7 +14,7 @@
 
 ### Association
 -has_many :listings
--has_one  :purchases
+-has_many :purchases
 
 ## listings テーブル
 | Column                  | Type      | Options           |
