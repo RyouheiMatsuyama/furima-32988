@@ -12,6 +12,7 @@
 | last_name_kana        | string | null: false              |
 | birth_date            | date   | null: false              |
 
+
 ### Association
 -has_many :listings
 -has_many :purchases
