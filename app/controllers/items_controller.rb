@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    #@listinds = Listing.all
+    # @listinds = Listing.all
   end
 
   def new
@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listings).permit(:nickname, :last_name, :first_name, :first_name_kana, :last_name_kana, :birth_date).merge(user_id: current_user.id)
+    params.require(:listings).permit(:nickname, :last_name, :first_name, :first_name_kana, :last_name_kana,
+                                     :birth_date).merge(user_id: current_user.id)
   end
 end
