@@ -17,7 +17,7 @@ class Item < ApplicationRecord
     validates :selling_price, length: { maximum: 1000 }
   end
 
-  validates_inclusion_of presence: true, :selling_price, in: 300..9_999_999
+  validates_inclusion_of :selling_price, in: 300..9_999_999
   validates :image
 
   belongs_to :user
