@@ -14,10 +14,10 @@
 
 
 ### Association
--has_many :listings
+-has_many :items
 -has_many :purchases
 
-## listings テーブル
+## items テーブル
 | Column                  | Type      | Options           |
 | ----------------------- | --------- | ----------------- |
 | name                    | string    | null: false       |
@@ -34,7 +34,7 @@
 -belongs_to :user
 -has_one  :purchase
 
-## prefecturesテーブル
+## ordersテーブル
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
 | postal_code   | string     | null: false       |
@@ -56,5 +56,5 @@
 
 ### Association
 -belongs_to :user
--belongs_to :listing
--has_one    :prefecture
+-belongs_to :item
+-has_one    :order
