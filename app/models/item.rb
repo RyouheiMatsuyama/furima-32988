@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   with_options presence: true do
-    validates :name,                   presence: true, length: { maximum: 40 }
-    validates :explanation,            presence: true, length: { maximum: 1000 }
+    validates :name,                   length: { maximum: 40 }
+    validates :explanation,            length: { maximum: 1000 }
   end
 
   with_options numericality: { other_than: 1, message: 'を入力' } do
@@ -17,8 +17,8 @@ class Item < ApplicationRecord
     validates :selling_price, length: { maximum: 1000 }
   end
 
-  validates_inclusion_of :selling_price, in: 300..9_999_999
-  validates :image, presence: true
+  validates_inclusion_of presence: true, :selling_price, in: 300..9_999_999
+  validates :image
 
   belongs_to :user
   has_one :purchase
