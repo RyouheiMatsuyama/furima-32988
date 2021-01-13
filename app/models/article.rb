@@ -1,4 +1,4 @@
 class Article < ApplicationRecor
-  
-  belongs_to :genreextend ActiveHash::Associations::ActiveRecordExtensions
+  # extend ActiveHash::Associations::ActiveRecordExtensions
+  # belongs_to :genre
 end

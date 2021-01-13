@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-  describe 'ユーザー新規登録 ログイン　正常系' do
+  describe 'ユーザー新規登録 ログイン 正常系' do
     it '新規登録、ログインができる' do
       expect(@user).to be_valid
     end
