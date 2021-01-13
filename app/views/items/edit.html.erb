@@ -3,7 +3,7 @@ app/assets/stylesheets/items/new.css %>
 
 <div class="items-sell-contents">
   <header class="items-sell-header">
-    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+    <%= link_to image-tag('furima-logo-color.png' , size: '185x50'), "/" %>
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
@@ -52,7 +52,7 @@ app/assets/stylesheets/items/new.css %>
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-category"}) %>
+        <%= f.collection_select(:hoge, [], :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>

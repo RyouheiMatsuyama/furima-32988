@@ -1,25 +1,29 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
+
   def index
-    # @listinds = Listing.all
   end
 
   def new
-    # @listings = listing.new
+    @item = Item.new
   end
 
   def create
-    # @listings = Listings.new(listings_params)
-    # if @listings.save
-    # redirect_to root_path
-    # else
-    # render :new
-    # end
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
-  # private
+  def show
+  end
 
-  # def listing_params
-  # params.require(:listings).permit(:nickname, :last_name, :first_name, :first_name_kana, :last_name_kana,
-  #:birth_date).merge(user_id: current_user.id)
-  # end
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :explanation, :details_category_id, :details_state_id, :shipping_fee_burden_id,
+                                 :prefecture_id, :days_to_ship_id, :selling_price, :image).merge(user_id: current_user.id)
+  end
 end
