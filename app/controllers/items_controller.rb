@@ -1,11 +1,8 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
+
   def index
     @items = Item.order('created_at DESC')
-    # @items = Item.includes(:user)
-    # @item = Item.find(params[:item_id])
-    # if current_user == @item.user
-    # redirect_to root_path
-    # end
   end
 
   def new
@@ -22,7 +19,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # @items = current_user.
   end
 
   private

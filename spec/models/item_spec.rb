@@ -30,34 +30,34 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Explanation can't be blank")
     end
 
-    it 'カテゴリーの情報が必須であること' do
-      @item.details_category_id = ''
+    it 'カテゴリーの情報が1では出品できない' do
+      @item.details_category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Details category is not a number')
+      expect(@item.errors.full_messages).to include('Details category を入力')
     end
 
-    it '商品の状態についての情報が必須であること' do
-      @item.details_state_id = ''
+    it '商品の状態についての情報が1では出品できない' do
+      @item.details_state_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Details state is not a number')
+      expect(@item.errors.full_messages).to include('Details state を入力')
     end
 
-    it '配送料の負担についての情報が必須であること' do
-      @item.shipping_fee_burden_id = ''
+    it '配送料の負担についての情報が1では出品できない' do
+      @item.shipping_fee_burden_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Shipping fee burden is not a number')
+      expect(@item.errors.full_messages).to include('Shipping fee burden を入力')
     end
 
-    it '発送元の地域についての情報が必須であること' do
-      @item.prefecture_id = ''
+    it '発送元の地域についての情報が0では出品できない' do
+      @item.prefecture_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include('Prefecture is not a number')
+      expect(@item.errors.full_messages).to include('Prefecture を入力')
     end
 
-    it '発送までの日数についての情報が必須であること' do
-      @item.days_to_ship_id = ''
+    it '発送までの日数についての情報が1では出品できない' do
+      @item.days_to_ship_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Days to ship is not a number')
+      expect(@item.errors.full_messages).to include('Days to ship を入力')
     end
 
     it '価格についての情報が必須であること' do
@@ -67,13 +67,13 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格の範囲が、¥300からであること' do
-      @item.selling_price = '299'
+      @item.selling_price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include('Selling price is not included in the list')
     end
 
     it '価格の範囲が、~¥9999999までであること' do
-      @item.selling_price = '10000000'
+      @item.selling_price = 10_000_000
       @item.valid?
       expect(@item.errors.full_messages).to include('Selling price is not included in the list')
     end

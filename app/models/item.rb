@@ -1,15 +1,22 @@
 class Item < ApplicationRecord
-  validates :name,                   presence: true, length: { maximum: 40 }
-  validates :explanation,            presence: true, length: { maximum: 1000 }
-  validates :details_category_id,    numericality: { other_than: 1 }
-  validates :details_state_id,       numericality: { other_than: 1 }
-  validates :shipping_fee_burden_id, numericality: { other_than: 1 }
-  validates :prefecture_id,          numericality: { other_than: 0 }
-  validates :days_to_ship_id,        numericality: { other_than: 1 }
+  with_options presence: true do
+    validates :name,                   presence: true, length: { maximum: 40 }
+    validates :explanation,            presence: true, length: { maximum: 1000 }
+  end
+
+  with_options numericality: { other_than: 1, message: 'を入力' } do
+    validates :details_category_id
+    validates :details_state_id
+    validates :shipping_fee_burden_id
+    validates :days_to_ship_id
+  end
+
+  validates :prefecture_id, numericality: { other_than: 0, message: 'を入力' }
 
   with_options presence: true, format: { with: /\A[0-9]+\z/, message: '半角数字で入力' } do
     validates :selling_price, length: { maximum: 1000 }
   end
+
   validates_inclusion_of :selling_price, in: 300..9_999_999
   validates :image, presence: true
 
