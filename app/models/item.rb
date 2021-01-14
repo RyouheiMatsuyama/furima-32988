@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name,                   length: { maximum: 40 }
     validates :explanation,            length: { maximum: 1000 }
+    validates :image
   end
 
   with_options numericality: { other_than: 1, message: 'を入力' } do
@@ -18,7 +19,6 @@ class Item < ApplicationRecord
   end
 
   validates_inclusion_of :selling_price, in: 300..9_999_999
-  validates :image
 
   belongs_to :user
   has_one :purchase
