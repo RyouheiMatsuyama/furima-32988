@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_item, only: [:edit]
+  before_action :set_item, only: [:edit, :update]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
   def index
@@ -50,9 +50,5 @@ class ItemsController < ApplicationController
 
   def contributor_confirmation
     redirect_to root_path unless current_user.id == @item.user_id
-
-    #unless ~~
-      #~~false
-      #end
   end
 end
