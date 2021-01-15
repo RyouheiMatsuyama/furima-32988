@@ -32,7 +32,7 @@
         <p class='or-text'>or</p>
         <%= link_to '削除', item_path(@item), method: :delete, class:'item-destroy' %>
       <%# elsif @item.purchase.present? %> 
-      <% else current_user.id ！= @item.user.id%>
+      <% elsif current_user.id != @item.user.id %>
         <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
       <%# elsif @item.purchase.blank?%>
         <%#  soldout %>
