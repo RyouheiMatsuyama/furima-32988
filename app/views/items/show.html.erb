@@ -23,7 +23,6 @@
       </span>
     </div>
 
-    <%# if user_signed_in? %> <%#= if controller_name != 'sessions' %>
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
 
@@ -32,12 +31,11 @@
         <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
         <p class='or-text'>or</p>
         <%= link_to '削除', item_path(@item), method: :delete, class:'item-destroy' %>
-
-      <%# 購入機能実装後に作成する%>
-      <%# elsif '商品が出品中かどうか' %> 
-        <%#= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
-      <%# 購入機能実装後に作成する%>
-
+      <%# elsif @item.purchase.present? %> 
+      <% else current_user.id ！= @item.user.id%>
+        <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+      <%# elsif @item.purchase.blank?%>
+        <%#  soldout %>
       <% end %>
     <% end %>
 
@@ -112,7 +110,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href=“#” class=‘another-item’><%= "商品のカテゴリー名" %>をもっと見る</a>
+  <a href=“#” class=‘another-item’><%= @item.details_category.name %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
