@@ -51,7 +51,7 @@
 ## purchases テーブル
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
-| listing       | reference  | foreign_key: true |
+| item          | reference  | foreign_key: true |
 | user          | reference  | foreign_key: true |
 
 ### Association
