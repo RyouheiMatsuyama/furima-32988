@@ -4,9 +4,7 @@ class OrdersController < ApplicationController
   before_action :contributor_confirmation, only: [:index, :edit, :update, :destroy]
 
   def index
-    if @item.purchase != nil || current_user == @item.user
-        redirect_to root_path
-    end
+    redirect_to root_path if !@item.purchase.nil? || current_user == @item.user
     @order_purchase = OrderPurchase.new
   end
 
@@ -36,7 +34,7 @@ class OrdersController < ApplicationController
   end
 
   def contributor_confirmation
-    redirect_to root_path if @item.user_id == current_user.id 
+    redirect_to root_path if @item.user_id == current_user.id
   end
 
   def pay_item
