@@ -10,7 +10,7 @@ class OrderPurchase
     validates :phone_number, length: { maximum: 11 }
     validates :token
   end
-  # with: /^\d{10}$/, message: "は半角数字でハイフンは使用できない"
+ 
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 
   def save
