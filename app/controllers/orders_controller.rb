@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
     if @item.purchase != nil || current_user == @item.user
         redirect_to root_path
     end
+    @order_purchase = OrderPurchase.new
   end
 
   def new
